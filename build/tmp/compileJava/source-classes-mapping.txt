@@ -1,0 +1,6 @@
+com/snnlab/gateway/controller/FallbackRestController.java
+ com.snnlab.gateway.controller.FallbackRestController
+com/snnlab/gateway/config/SecurityConfig.java
+ com.snnlab.gateway.config.SecurityConfig
+com/snnlab/gateway/GatewayApplication.java
+ com.snnlab.gateway.GatewayApplication

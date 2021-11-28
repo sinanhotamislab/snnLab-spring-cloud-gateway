@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: snnLab-gateway
+
+  cloud:
+    gateway:
+      httpclient:
+        connect-timeout: 1000
+        response-timeout: 5s
+      routes:
+        - id: snnlab-ms1
+          uri: lb://SNNLAB-MS1
+          predicates:
+            - Path=/snnlab-ms1/**
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "http://127.0.0.1:8080"
+            allowedMethods: "*"
+            allowedHeaders: "Authorization"
+            allowCredentials: true
+      default-filters: #filters for all router id
+        - name: CircuitBreaker
+          args:
+            name: snnLabGatewayCircuitBreaker
+            fallbackUri: forward:/fallback/message
+
+okta:
+  oauth2:
+    issuer: https://dev-95993870.okta.com/oauth2/default
+    clientId: 0oakkwty07dZtUMJV5d6
+    client-secret: RZuDi900kwDm2szi_l6hfwPnlOrNxvL-jKwZnAdX
+
+server:
+  port: 8081
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8082/snnLab-service-discovery/eureka
